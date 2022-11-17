@@ -4,22 +4,36 @@
  * @return {number}
  */
  var divide = function(dividend, divisor) {
-    
+  const negative = (divisor > 0 && dividend > 0 || divisor < 0 && dividend < 0) ? false : true;
+  
+  if (Math.abs(divisor) === 1) {
+      if(!negative) {
+          return Math.abs(dividend) >= Math.pow(2,31) ? Math.pow(2,31) - 1 : Math.abs(dividend);
+      } else {
+          return -Math.abs(dividend);
+      }
+  }
+  
   let ans = 0;
-  let count = 0;
-  const absDividend = Math.abs(dividend);
+  let absDividend = Math.abs(dividend);
   const absDivisor = Math.abs(divisor);
   
-  while(ans + absDivisor <= absDividend) {
-      ans += absDivisor;
-      count++;
+  while (absDividend >= absDivisor) {
+      let temp = absDivisor;
+      let count = 1;
+      while (temp <= absDividend) {
+          temp <<= 1;
+          count <<= 1;
+      }
+      ans += (count >> 1);
+      absDividend -= (temp >> 1);
   }
   
-  count = (divisor > 0 && dividend > 0 || divisor < 0 && dividend < 0) ? count : -count;
+  ans = negative ? -ans : ans;
   
-  if(count >= Math.pow(2,31)) {
-    count = Math.pow(2,31) - 1;
+  if (ans >= Math.pow(2,31)) {
+    ans = Math.pow(2,31) - 1;
   }
   
-  return count;
+  return ans;
 };
