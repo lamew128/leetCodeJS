@@ -31,7 +31,7 @@
   
   ans = negative ? -ans : ans;
   
-  if (ans >= Math.pow(2,31)) {
+  if (ans >= Math.pow(2,31)) { //int max
     ans = Math.pow(2,31) - 1;
   }
   
