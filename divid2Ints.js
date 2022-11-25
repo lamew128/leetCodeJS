@@ -6,7 +6,7 @@
  var divide = function(dividend, divisor) {
   const negative = (divisor > 0 && dividend > 0 || divisor < 0 && dividend < 0) ? false : true;
   
-  if (Math.abs(divisor) === 1) {
+  if (Math.abs(divisor) === 1) { //edge case: return the dividend if divisor = 1
       if(!negative) {
           return Math.abs(dividend) >= Math.pow(2,31) ? Math.pow(2,31) - 1 : Math.abs(dividend);
       } else {
