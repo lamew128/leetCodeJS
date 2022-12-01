@@ -4,7 +4,7 @@
  * @return {number}
  */
  var divide = function(dividend, divisor) {
-  const negative = (divisor > 0 && dividend > 0 || divisor < 0 && dividend < 0) ? false : true;
+  const negative = (divisor > 0 && dividend > 0 || divisor < 0 && dividend < 0) ? false : true; //check negative
   
   if (Math.abs(divisor) === 1) { //edge case: return the dividend if divisor = 1
       if(!negative) {
